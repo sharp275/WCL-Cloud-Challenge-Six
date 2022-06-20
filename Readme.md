@@ -3,11 +3,11 @@ Whizlabs Challenge League
 </h1>
 
 <h2 align="center">
-Challenge Lab Four
+Challenge Lab Six
 </h2>
 
 <h2 align="center">
-Static Website Hosting using S3
+Configure SNS Email Notification on S3 Bucket Event
 </h2>
 
 ---
@@ -17,37 +17,22 @@ WhizLabs is running a cloud challenge between May and July 2022.  The challenge 
 ---
 <h3>From Whizlabs</h3>
 
-[Cloud Challenge Details](inst.jpeg)
+[Cloud Challenge Details](inst.jpg)
 
->In this lab challenge, your Amazon S3 skill is put to the test. You'll be given a requirement and you have to reach it using your knowledge of Amazon S3 and other AWS services. The Lab Challenge helps you understand the real-time scenarios.
-    A company XYZ needs to host a web application as a part of their infrastructure. Now your challenge is to create a static HTML website using Amazon S3 and make it accessible from the internet.<br><br>
->Follow the below instructions to complete this challenge. 
->1.	Create a Bucket and uncheck Block all Public access.
->2.	[Click here](https://labtask10045.s3.amazonaws.com/s3-website-challenge.zip) to download the zip file and unzip it to find two html files, index.html and error.html files.
->3.	Add the below policy as the bucket policy and replace S3_BUCKET_ARN with your buckets ARN.
-```
-{ 
-   "Id":"Policy1",
-   "Version":"2012-10-17",
-   "Statement":[ 
-      { 
-         "Sid":"Stmt1",
-         "Action":[ 
-            "s3:GetObject"
-         ],
-         "Effect":"Allow",
-         "Resource":"S3_BUCKET_ARN/*",
-         "Principal":"*"
-      }
-   ]
-}
-```
->4.	Upload the index.html and error.html files to your S3 bucket.
->5.	Enable Static Website hosting:
->     1. Choose index.html as Index Document
->     2. Choose error.html as Error Document
->6.	Test the website by accessing the S3 Endpoint in your browser.
->7.	Test the error page by adding some random characters at the end of the URL.
+>In this challenge, your Amazon SNS and Amazon S3 skills are put to the test. You'll be given a requirement and you have to reach it using your knowledge of Amazon SNS and Amazon S3. This Challenge will help you understand the real-time scenarios. 
+A company XYZ is deploying a new web application that helps customers to upload files to S3 Bucket. As a part of the infrastructure, the Administrator needs to be notified via Email whenever an object is put into their S3 bucket. Now your challenge is to setup the AWS architecture to perform this operation. 
+>
+>Follow the below instructions to complete this challenge.
+>
+>1. Create a Standard Amazon SNS topic named **mySnsChallengeTopic**.
+>2.	Add an Email subscription to that topic and verify it.
+>3.	Create a S3 bucket with a globally unique name.
+>4.	Update the Amazon SNS Topic **Access Policy** and add permission for S3 to publish messages to SNS Topic that you have created.
+>5.	Now, Create a S3 Notification Event named **uploadObjectS3Event**. 
+>     1. Select S3 Event type as Put.
+>     2. Select your SNS Topic as event Destination.
+>6.	Test the Configuration by uploading any sample PNG image file to S3 Bucket and see if you're notified. 
+
 ---
 <br><br>
 Download the zip file and extract index.html and error.html
